@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gallery</title>
+    <style>
+      * {
+        margin: 0px;
+      }
+      body {
+        background-image: url(https://unite.pokemon.com/images/footer/background.jpg);
+      }
+
+      body::-webkit-scrollbar {
+        display: none;
+      }
+      h1 {
+        color: #fff;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        padding: 15px;
+        width: max-content;
+        font-family: sans-serif;
+        text-align: center;
+
+        margin: 25px;
+      }
+
+      .not-child {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: none;
+      }
+
+      .charizard {
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: none;
+      }
+
+      .container {
+        /* border: 1px solid black; */
+        width: 500x;
+        display: inline-block;
+        height: 630px;
+        margin: 15px 30px 25px 30px;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+          rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+          rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        overflow: scroll;
+        transition: 0.2s;
+      }
+
+
+      @media only screen and (max-width: 600px) {
+ .container{
+    height: 680px;
+ }
+}
+      .container::-webkit-scrollbar {
+        display: none;
+      }
+      .container:hover {
+        transform: scale(1.01);
+        z-index: 2;
+      }
+      .item {
+        display: inline-block;
+        padding: 10px;
+      }
+
+      button {
+        width: 20px;
+        height: 20px;
+        padding: 25px;
+        margin: 10px;
+        position: absolute;
+        display: flex;
+        float: left;
+      }
+      .rotate {
+        box-shadow: rgba(145, 12, 211, 0.582) 0px 8px 24px;
+
+        margin: 25px;
+        transition: 0.5s;
+      }
+      .rotate:hover {
+        transform: scale(1.3);
+        z-index: 2;
+      }
+
+      /* .pokemon-image__decoration {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+      }
+
+      .pokemon-image__decoration ::before {
+        height: 100%;
+        left: 0;
+        position: absolute;
+        top: 0;
+        width: 100%;
+        background: rgba(158, 236, 252, 0.3);
+        border: 2px solid #9eecfc;
+        border-radius: 50%;
+        box-shadow: 0 0 30px 0 #9eecfc;
+        transform: rotateX(75deg) translateY(180%);
+        content: "";
+      }
+
+      .vp--onf-30 .pokemon-image__decoration {
+        transition-duration: 1s;
+      }
+
+      .pokemon-image__decoration + .pokemon-image__decoration::before {
+        display: none;
+      }
+
+      .pokemon-image__decoration-tech {
+        left: 10%;
+        top: 10%;
+        position: absolute;
+        transform: rotateX(75deg) translateY(220%);
+        width: 80%;
+      }
+
+      .pokemon-image__decoration-tech::before {
+        animation: anim-infinite-rotation 7s linear infinite;
+        background: url("https://unite.pokemon.com/images/common/tech-decoration.svg")
+          center/cover no-repeat;
+        content: "";
+
+        display: block;
+        padding-bottom: 100%;
+      }
+
+      .vp--onf-30 .pokemon-image__decoration-tech {
+        transition-duration: 1s;
+      } */
+    </style>
+  </head>
+  <body>
+    <center>
+      <h1>Pokemon Image Gallery</h1>
+
+      <div class="container">
+        <div class="not-child" id="pika">
+          <button onclick="hidePika()">X</button>
+          <img
+            src="https://unite.pokemon.com/images/pokemon/pikachu/stat/stat-pikachu.png"
+            alt=""
+            height="600px"
+            width="600px"
+          />
+        </div>
+
+        <div class="not-child" id="charizard">
+          <button onclick="hideChar()">X</button>
+          <img
+            src="https://unite.pokemon.com/images/home/team-up/charizard-medium-up.png"
+            alt=""
+            height="600px"
+            width="600px"
+          />
+        </div>
+        <div class="not-child" id="zacian">
+          <button onclick="hideZacian()">X</button>
+          <img
+            src="https://unite.pokemon.com/images/pokemon/zacian/stat/stat-zacian.png"
+            alt=""
+            height="600px"
+            width="600px"
+          />
+        </div>
+        <div class="not-child" id="mew">
+          <button onclick="hideMew()">X</button>
+          <img
+            src="https://unite.pokemon.com/images/pokemon/mew/stat/stat-mew.png"
+            alt=""
+            height="600px"
+            width="600px"
+          />
+        </div>
+
+        <div class="item">
+          <img
+            class="rotate"
+            onclick="showPika(this)"
+            src="https://unite.pokemon.com/images/pokemon/pikachu/stat/stat-pikachu.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <!-- <img
+          src="https://unite.pokemon.com/images/common/tech-decoration.svg"
+          alt=""
+          height="300px"
+          width="300px"
+        /> -->
+          <img
+            class="rotate"
+            onclick="showChar(this)"
+            src="https://unite.pokemon.com/images/home/team-up/charizard-medium-up.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            onclick="showZacian(this)"
+            src="https://unite.pokemon.com/images/pokemon/zacian/stat/stat-zacian.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            onclick="showMew(this)"
+            src="https://unite.pokemon.com/images/pokemon/mew/stat/stat-mew.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/garchomp/stat/stat-garchomp.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/lapras/stat/stat-lapras.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/goodra/stat/stat-goodra.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/comfey/stat/stat-comfey.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/dragapult/stat/stat-dragapult.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/clefable/stat/stat-clefable.png"
+            alt=""
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/urshifu/stat/stat-urshifu.png"
+            alt="urshifu"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/zoroark/stat/stat-zoroark.png"
+            alt="zoroark"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/buzzwole/stat/stat-buzzwole.png"
+            alt="buzzwole"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/glaceon/stat/stat-glaceon.png"
+            alt="glaceon"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/delphox/stat/stat-delphox.png"
+            alt="delphox"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/espeon/stat/stat-espeon.png"
+            alt="espeon"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/snorlax/stat/stat-snorlax.png"
+            alt="snorlax"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/lucario/stat/stat-lucario.png"
+            alt="Lucario"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/cinderace/stat/stat-cinderace.png"
+            alt="cinderace"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/gengar/stat/stat-gengar.png"
+            alt="gengar"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/alolan-ninetales/stat/stat-alolan-ninetales.png"
+            alt="alolan-ninetales"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/greninja/stat/stat-greninja.png"
+            alt="greninja"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/dragonite/stat/stat-dragonite.png"
+            alt="dragonite"
+            height="300px"
+            width="300px"
+          />
+          <img
+            class="rotate"
+            src="https://unite.pokemon.com/images/pokemon/hoopa/stat/stat-hoopa.png"
+            alt="hoopa"
+            height="300px"
+            width="300px"
+          />
+        </div>
+      </div>
+    </center>
+
+    <script>
+      var pika = document.getElementById("pika");
+      var charizard = document.getElementById("charizard");
+      var zacian= document.getElementById('zacian')
+      var mew = document.getElementById("mew");
+
+      function hidePika() {
+        pika.style.display = "none";
+      }
+      function showPika() {
+        pika.style.display = "block";
+      }
+
+      function hideChar() {
+        charizard.style.display = "none";
+      }
+      function showChar() {
+        charizard.style.display = "block";
+      }
+
+      function hideZacian() {
+       zacian.style.display = "none";
+      }
+      function showZacian() {
+       zacian.style.display = "block";
+      }
+
+      function hideMew() {
+        mew.style.display = "none";
+      }
+      function showMew() {
+        mew.style.display = "block";
+      }
+    </script>
+  </body>
+</html>
